@@ -1,8 +1,6 @@
 import "./App.css";
 import { useMemo } from "react";
 
-import Home from "./Home";
-
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
@@ -18,9 +16,13 @@ import {
   ConnectionProvider,
   WalletProvider,
 } from "@solana/wallet-adapter-react";
-
+import { Tabs, Tab } from "@material-ui/core";
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 import { createTheme, ThemeProvider } from "@material-ui/core";
+import PageOne from "./pages/PageOne";
+import PageTwo from "./pages/PageTwo";
+import PageThree from "./pages/PageThree";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const treasury = new anchor.web3.PublicKey(
   process.env.REACT_APP_TREASURY_ADDRESS!
@@ -44,28 +46,28 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
 const theme = createTheme({
-    palette: {
-        type: 'dark',
+  palette: {
+    type: "dark",
+  },
+  overrides: {
+    MuiButtonBase: {
+      root: {
+        justifyContent: "flex-start",
+      },
     },
-    overrides: {
-        MuiButtonBase: {
-            root: {
-                justifyContent: 'flex-start',
-            },
-        },
-        MuiButton: {
-            root: {
-                textTransform: undefined,
-                padding: '12px 16px',
-            },
-            startIcon: {
-                marginRight: 8,
-            },
-            endIcon: {
-                marginLeft: 8,
-            },
-        },
+    MuiButton: {
+      root: {
+        textTransform: undefined,
+        padding: "12px 16px",
+      },
+      startIcon: {
+        marginRight: 8,
+      },
+      endIcon: {
+        marginLeft: 8,
+      },
     },
+  },
 });
 
 const App = () => {
@@ -73,32 +75,37 @@ const App = () => {
 
   const wallets = useMemo(
     () => [
-        getPhantomWallet(),
-        getSlopeWallet(),
-        getSolflareWallet(),
-        getSolletWallet({ network }),
-        getSolletExtensionWallet({ network })
+      getPhantomWallet(),
+      getSlopeWallet(),
+      getSolflareWallet(),
+      getSolletWallet({ network }),
+      getSolletExtensionWallet({ network }),
     ],
     []
   );
 
   return (
-      <ThemeProvider theme={theme}>
-        <ConnectionProvider endpoint={endpoint}>
-          <WalletProvider wallets={wallets} autoConnect>
-            <WalletDialogProvider>
-              <Home
-                candyMachineId={candyMachineId}
-                config={config}
-                connection={connection}
-                startDate={startDateSeed}
-                treasury={treasury}
-                txTimeout={txTimeout}
-              />
-            </WalletDialogProvider>
-          </WalletProvider>
-        </ConnectionProvider>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect>
+          <WalletDialogProvider>
+            <Router>
+              <Switch>
+                <Route path="/two">
+                  <PageTwo />
+                </Route>
+                <Route path="/three">
+                  <PageThree />
+                </Route>
+                <Route>
+                  <PageOne />
+                </Route>
+              </Switch>
+            </Router>
+          </WalletDialogProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    </ThemeProvider>
   );
 };
 
