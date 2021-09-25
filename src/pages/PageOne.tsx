@@ -29,13 +29,15 @@ import {
 } from "../utils/candy-machine";
 import MintButton from "../components/MintButton";
 
-const connection = new anchor.web3.Connection("https://api.devnet.solana.com/");
+const connection = new anchor.web3.Connection(
+  "https://api.mainnet-beta.solana.com/"
+);
 
 const CANDYMACHINE = {
-  id: new PublicKey("AkKwzkNoMW9jwrkZpYvhfFXJoGbP3FmizXzw3MbUvBJF"),
-  treasury: new PublicKey("Acf2R8R5vRGhQ4PGpXRbGBRsHwoZYpn3TvrKyb9Zj6Ew"),
-  config: new PublicKey("AuTLgvGhpjH6iPNMoxrcwnxhaaZgKtMAj4nBWf78byJ"),
-  startDate: 1630422000000,
+  id: new PublicKey("ArmgCzuYxPw8Co49gr6LKTwPoj4XoeUZT4EowZjcttTf"),
+  treasury: new PublicKey("D3euPBeUybyCKv3YUs6ae58aFKdhisM3YXiFeYi1J8vF"),
+  config: new PublicKey("5h6CQN2BZZfxHXeaHq2WLMKotnh3wNKbbBLMi6v4zGQ1"),
+  startDate: 1632535200,
   txTimeout: 30000,
 };
 
@@ -97,24 +99,38 @@ const TierOne = () => {
           }}
         >
           <img
-            src="images/banner.png"
-            alt="Deeper Tones"
+            src={process.env.PUBLIC_URL + "/images/red.png"}
+            alt="Red"
             width="100%"
             height="100%"
           />
         </Box>
         <Box>
-          <Typography component="h1" variant="h4">
-            Deeper Tones Candy Machine
-          </Typography>
+          <Box sx={{ marginBottom: 12 }}>
+            <Typography component="h1" variant="h4">
+              Welcome aboard the underground NFT Rail Road!
+            </Typography>
+          </Box>
           <Typography component="p" variant="body1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Welcome aboard the underground NFT Rail Road! Black Money is a
+            black-based social impact NFT project developed to generate
+            long-term financial and social value for black token holders. This
+            project is intended to honor our Black American ancestors who
+            deserve to be celebrated for creating pathways of freedom for black
+            lives by minting them and their legacy on the blockchain. Our hope
+            is to bring awareness and access to cryptocurrency for our black
+            community by co-creating a underground NFT drop that is comprised of
+            our black friends, colleagues and family.
+            <br />
+            <br /> You are about the become the first owner of Black Money! Once
+            purchased, please consider selling your Black Money to Black
+            collectors on our secondary market at Deeper Tones, that will open
+            up once we sell out. Those interested in accessing the social
+            components, road map, and keeping up to date on this project please
+            email: deepertonesnft@gmail.com
+            <br />
+            <br /> Thank you for minting your very own Black Money! This one is
+            for the ancestors and for the culture!
           </Typography>
         </Box>
         {/* {wallet && <p>Address: {wallet.publicKey.toBase58()}</p>} */}
@@ -125,10 +141,10 @@ const TierOne = () => {
           }}
         >
           <Typography component="h2" variant="h5">
-            Mint Your Very Own Green NFT
+            Mint Your Very Own NFT
           </Typography>
           <Typography component="p" variant="overline">
-            Minting Price 1 SOL
+            Minting Price 2 SOL
           </Typography>
 
           {!wallet ? (

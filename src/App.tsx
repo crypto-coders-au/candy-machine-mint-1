@@ -22,9 +22,15 @@ import { createTheme, ThemeProvider } from "@material-ui/core";
 import PageOne from "./pages/PageOne";
 import PageTwo from "./pages/PageTwo";
 import PageThree from "./pages/PageThree";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
-const network = process.env.REACT_APP_SOLANA_NETWORK as WalletAdapterNetwork;
+const network = WalletAdapterNetwork.Mainnet;
 
 const theme = createTheme({
   palette: {
@@ -72,15 +78,16 @@ const App = () => {
           <WalletDialogProvider>
             <Router>
               <Switch>
-                <Route path="/two">
+                <Route path="/green">
                   <PageTwo />
                 </Route>
-                <Route path="/three">
+                <Route path="/black">
                   <PageThree />
                 </Route>
-                <Route>
+                <Route path="/red">
                   <PageOne />
                 </Route>
+                <Route render={() => <Redirect to="/red" />} />
               </Switch>
             </Router>
           </WalletDialogProvider>
