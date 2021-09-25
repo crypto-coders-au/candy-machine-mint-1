@@ -29,7 +29,7 @@
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
-  "homepage": "http://crypto-coders-au.github.io/deeptones-io",
+  "homepage": "http://crypto-coders-au.github.io/deepertones-io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
