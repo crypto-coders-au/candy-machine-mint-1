@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/deeptones-io/static/css/main.76598800.chunk.css",
-    "main.js": "/deeptones-io/static/js/main.4f8aaf3f.chunk.js",
-    "main.js.map": "/deeptones-io/static/js/main.4f8aaf3f.chunk.js.map",
-    "runtime-main.js": "/deeptones-io/static/js/runtime-main.b17da0b4.js",
-    "runtime-main.js.map": "/deeptones-io/static/js/runtime-main.b17da0b4.js.map",
-    "static/js/2.86086575.chunk.js": "/deeptones-io/static/js/2.86086575.chunk.js",
-    "static/js/2.86086575.chunk.js.map": "/deeptones-io/static/js/2.86086575.chunk.js.map",
-    "static/js/3.e54fd4f6.chunk.js": "/deeptones-io/static/js/3.e54fd4f6.chunk.js",
-    "static/js/3.e54fd4f6.chunk.js.map": "/deeptones-io/static/js/3.e54fd4f6.chunk.js.map",
-    "index.html": "/deeptones-io/index.html",
-    "static/css/main.76598800.chunk.css.map": "/deeptones-io/static/css/main.76598800.chunk.css.map",
-    "static/js/2.86086575.chunk.js.LICENSE.txt": "/deeptones-io/static/js/2.86086575.chunk.js.LICENSE.txt"
+    "main.css": "/deepertones-io/static/css/main.76598800.chunk.css",
+    "main.js": "/deepertones-io/static/js/main.8e2cf92e.chunk.js",
+    "main.js.map": "/deepertones-io/static/js/main.8e2cf92e.chunk.js.map",
+    "runtime-main.js": "/deepertones-io/static/js/runtime-main.2515e02a.js",
+    "runtime-main.js.map": "/deepertones-io/static/js/runtime-main.2515e02a.js.map",
+    "static/js/2.ae29ccfb.chunk.js": "/deepertones-io/static/js/2.ae29ccfb.chunk.js",
+    "static/js/2.ae29ccfb.chunk.js.map": "/deepertones-io/static/js/2.ae29ccfb.chunk.js.map",
+    "static/js/3.e54fd4f6.chunk.js": "/deepertones-io/static/js/3.e54fd4f6.chunk.js",
+    "static/js/3.e54fd4f6.chunk.js.map": "/deepertones-io/static/js/3.e54fd4f6.chunk.js.map",
+    "index.html": "/deepertones-io/index.html",
+    "static/css/main.76598800.chunk.css.map": "/deepertones-io/static/css/main.76598800.chunk.css.map",
+    "static/js/2.ae29ccfb.chunk.js.LICENSE.txt": "/deepertones-io/static/js/2.ae29ccfb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b17da0b4.js",
-    "static/js/2.86086575.chunk.js",
+    "static/js/runtime-main.2515e02a.js",
+    "static/js/2.ae29ccfb.chunk.js",
     "static/css/main.76598800.chunk.css",
-    "static/js/main.4f8aaf3f.chunk.js"
+    "static/js/main.8e2cf92e.chunk.js"
   ]
 }
