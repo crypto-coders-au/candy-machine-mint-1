@@ -1,6 +1,6 @@
 import "./App.css";
 import { useMemo } from "react";
-
+import "@fontsource/lora";
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
@@ -21,7 +21,6 @@ import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 import { createTheme, ThemeProvider } from "@material-ui/core";
 import PageOne from "./pages/PageOne";
 import PageTwo from "./pages/PageTwo";
-import PageThree from "./pages/PageThree";
 import {
   HashRouter as Router,
   Switch,
@@ -33,6 +32,9 @@ import {
 const network = WalletAdapterNetwork.Mainnet;
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "Lora",
+  },
   palette: {
     type: "dark",
   },
@@ -78,16 +80,13 @@ const App = () => {
           <WalletDialogProvider>
             <Router>
               <Switch>
-                <Route path="/green">
+                <Route path="/buy">
                   <PageTwo />
                 </Route>
-                <Route path="/black">
-                  <PageThree />
-                </Route>
-                <Route path="/red">
+                <Route path="/presale">
                   <PageOne />
                 </Route>
-                <Route render={() => <Redirect to="/red" />} />
+                <Route render={() => <Redirect to="/presale" />} />
               </Switch>
             </Router>
           </WalletDialogProvider>

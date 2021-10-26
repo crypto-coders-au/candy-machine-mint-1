@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/lora": "^4.5.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
@@ -29,7 +30,7 @@
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
-  "homepage": "http://crypto-coders-au.github.io/deepertones-io",
+  "homepage": "",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

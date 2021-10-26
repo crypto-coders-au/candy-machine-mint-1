@@ -28,6 +28,9 @@ export interface MintButtonProps {
   startDate: number;
   treasury: anchor.web3.PublicKey;
   txTimeout: number;
+  setItemsAvailable: (items: number) => void;
+  setItemsRedeemed: (items: number) => void;
+  setItemsRemaining: (items: number) => void;
 
   onSuccess?: (success: any) => void;
   onError?: (error: any) => void;
@@ -38,6 +41,9 @@ const MintButton = (props: MintButtonProps) => {
   const [isActive, setIsActive] = useState(false); // true when countdown completes
   const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
+  const setItemsAvailable = props.setItemsAvailable;
+  const setItemsRemaining = props.setItemsRemaining;
+  const setItemsRedeemed = props.setItemsRedeemed;
 
   const [alertState, setAlertState] = useState<AlertState>({
     open: false,
@@ -119,12 +125,17 @@ const MintButton = (props: MintButtonProps) => {
     (async () => {
       if (!wallet) return;
 
-      const { candyMachine, goLiveDate, itemsRemaining } =
-        await getCandyMachineState(
-          wallet as anchor.Wallet,
-          props.candyMachineId,
-          props.connection
-        );
+      const {
+        candyMachine,
+        goLiveDate,
+        itemsRemaining,
+        itemsAvailable,
+        itemsRedeemed,
+      } = await getCandyMachineState(
+        wallet as anchor.Wallet,
+        props.candyMachineId,
+        props.connection
+      );
 
       console.log(
         await getCandyMachineState(
@@ -133,6 +144,10 @@ const MintButton = (props: MintButtonProps) => {
           props.connection
         )
       );
+
+      setItemsAvailable(itemsAvailable);
+      setItemsRedeemed(itemsRedeemed);
+      setItemsRemaining(itemsRemaining);
 
       setIsSoldOut(itemsRemaining === 0);
       setStartDate(goLiveDate);
@@ -145,6 +160,8 @@ const MintButton = (props: MintButtonProps) => {
       disabled={isSoldOut || isMinting || !isActive}
       onClick={onMint}
       variant="contained"
+      background-color="black"
+      style={{ padding: "35px 70px", fontSize: "30px" }}
     >
       {isSoldOut ? (
         "SOLD OUT"

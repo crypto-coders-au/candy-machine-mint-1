@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Countdown from "react-countdown";
+import "@fontsource/lora";
 import {
   Button,
   CircularProgress,
@@ -47,6 +48,10 @@ const TierOne = () => {
   const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
+  const [itemsAvailable, setItemsAvailable] = useState(0);
+  const [itemsRedeemed, setItemsRedeemed] = useState(0);
+  const [itemsRemaining, setItemsRemaining] = useState(0);
+
   const [alertState, setAlertState] = useState<AlertState>({
     open: false,
     message: "",
@@ -80,108 +85,102 @@ const TierOne = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
-      <Box
-        sx={{
-          marginTop: 64,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
+    <div id="box">
+      <Container component="main" maxWidth="lg">
         <Box
           sx={{
-            marginTop: 8,
-            marginBottom: 8,
-            maxWidth: "100%",
-            overflow: "hidden",
+            marginTop: 64,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
           }}
         >
-          <img
-            src={process.env.PUBLIC_URL + "/images/red.png"}
-            alt="Red"
-            width="100%"
-            height="100%"
-          />
-        </Box>
-        <Box>
-          <Box sx={{ marginBottom: 12 }}>
-            <Typography component="h1" variant="h4">
-              Welcome aboard the underground NFT Rail Road!
+          <Box
+            sx={{
+              marginTop: 8,
+              marginBottom: 8,
+              maxWidth: "100%",
+              overflow: "hidden",
+            }}
+          ></Box>
+          <Box>
+            <Box sx={{ marginBottom: 12 }}>
+              <Typography component="h1" variant="h2">
+                Not all dogs who wander are lost
+              </Typography>
+            </Box>
+          </Box>
+          {/* {wallet && <p>Address: {wallet.publicKey.toBase58()}</p>} */}
+
+          <Box
+            sx={{
+              marginBottom: 12,
+            }}
+          >
+            <Typography component="h2" variant="h3">
+              pre-sale mint
             </Typography>
           </Box>
-          <Typography component="p" variant="body1">
-            Welcome aboard the underground NFT Rail Road! Black Money is a
-            black-based social impact NFT project developed to generate
-            long-term financial and social value for black token holders. This
-            project is intended to honor our Black American ancestors who
-            deserve to be celebrated for creating pathways of freedom for black
-            lives by minting them and their legacy on the blockchain. Our hope
-            is to bring awareness and access to cryptocurrency for our black
-            community by co-creating a underground NFT drop that is comprised of
-            our black friends, colleagues and family.
-            <br />
-            <br /> You are about the become the first owner of Black Money! Once
-            purchased, please consider selling your Black Money to Black
-            collectors on our secondary market at Deeper Tones, that will open
-            up once we sell out. Those interested in accessing the social
-            components, road map, and keeping up to date on this project please
-            email: deepertonesnft@gmail.com
-            <br />
-            <br /> Thank you for minting your very own Black Money! This one is
-            for the ancestors and for the culture!
-          </Typography>
-        </Box>
-        {/* {wallet && <p>Address: {wallet.publicKey.toBase58()}</p>} */}
-
-        <Box
-          sx={{
-            marginTop: 32,
-          }}
-        >
-          <Typography component="h2" variant="h5">
-            Mint Your Very Own NFT
-          </Typography>
-          <Typography component="p" variant="overline">
-            Minting Price 2 SOL
-          </Typography>
-
-          {!wallet ? (
-            <WalletDialogButton>Connect Wallet</WalletDialogButton>
-          ) : (
-            <MintButton
-              connection={connection}
-              candyMachineId={CANDYMACHINE.id}
-              config={CANDYMACHINE.config}
-              startDate={CANDYMACHINE.startDate}
-              treasury={CANDYMACHINE.treasury}
-              txTimeout={CANDYMACHINE.txTimeout}
-              onSuccess={onSuccess}
-              onError={onError}
-            ></MintButton>
-          )}
-          {wallet && (
-            <Typography component="p" variant="overline">
-              Balance {(balance || 0).toLocaleString()} SOL
-            </Typography>
-          )}
-        </Box>
-
-        <Snackbar
-          open={alertState.open}
-          autoHideDuration={6000}
-          onClose={() => setAlertState({ ...alertState, open: false })}
-        >
-          <Alert
-            onClose={() => setAlertState({ ...alertState, open: false })}
-            severity={alertState.severity}
+          <Box
+            sx={{
+              margin: 32,
+            }}
           >
-            {alertState.message}
-          </Alert>
-        </Snackbar>
-      </Box>
-    </Container>
+            <Typography component="h1" variant="h4">
+              Minting: Price 3 SOL
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              margin: 32,
+            }}
+          >
+            {!wallet ? (
+              <WalletDialogButton
+                style={{ background: "white", color: "black" }}
+              >
+                Connect Wallet
+              </WalletDialogButton>
+            ) : (
+              <MintButton
+                connection={connection}
+                candyMachineId={CANDYMACHINE.id}
+                config={CANDYMACHINE.config}
+                startDate={CANDYMACHINE.startDate}
+                treasury={CANDYMACHINE.treasury}
+                txTimeout={CANDYMACHINE.txTimeout}
+                onSuccess={onSuccess}
+                onError={onError}
+                setItemsRemaining={setItemsRemaining}
+                setItemsAvailable={setItemsAvailable}
+                setItemsRedeemed={setItemsRedeemed}
+              ></MintButton>
+            )}
+            {wallet && (
+              <Typography component="h1" variant="h4">
+                {/* Balance {(balance || 0).toLocaleString()} SOL */}
+                {wallet && <p>Remaining: {itemsRemaining}</p>}
+                {wallet && <p>Total: {itemsAvailable}</p>}
+              </Typography>
+            )}
+          </Box>
+
+          <Snackbar
+            open={alertState.open}
+            autoHideDuration={6000}
+            onClose={() => setAlertState({ ...alertState, open: false })}
+          >
+            <Alert
+              onClose={() => setAlertState({ ...alertState, open: false })}
+              severity={alertState.severity}
+            >
+              {alertState.message}
+            </Alert>
+          </Snackbar>
+        </Box>
+      </Container>
+    </div>
   );
 };
 
